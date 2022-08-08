@@ -22,10 +22,13 @@ function Login() {
 
     axios.post("http://localhost:2022/login",pp).then((data) => {
       console.log(data);
-      alert("Login Successs");
-      navigate('/dash')
+      if(data.data.status === 1){
+        alert("Success");
+        navigate('/dash')
+      }
     }).catch((err) => {
       console.log(err)
+      alert("wrong")
     })
   }
 
