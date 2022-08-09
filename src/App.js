@@ -11,6 +11,7 @@ import Mobile from './Pages/Products/Mobile';
 import Shoe from './Pages/Products/Shoe';
 import Shirt from './Pages/Products/Shirt';
 import Cart from './Pages/Products/Cart';
+import Address from './Pages/Products/Address';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/shoe' element={<Shoe/>}/>
           <Route path='/shirt' element={<Shirt/>}/>
           <Route path='/cart' element={<Cart/>}/>
+          <Route path='/address' element={<Address/>}/>
         </Routes>
       </BrowserRouter>
     </div>

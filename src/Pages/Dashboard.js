@@ -58,6 +58,11 @@ function Dashboard() {
     navigate('/cart')
   }
 
+  const Posted = (e) => {
+    e.preventDefault();
+    navigate('/address')
+  }
+
   return (
     <div>
 
@@ -66,7 +71,7 @@ function Dashboard() {
           <a href="" className="brand-logo">DevShip</a>
           <ul className="right">
             <li><a href="" onClick={trigger}>Cart</a></li>
-            <li><a href="">Address</a></li>
+            <li><a href="" onClick={Posted}>Address</a></li>
             <li><a href="">Order</a></li>
           </ul>
         </div>
@@ -74,6 +79,7 @@ function Dashboard() {
 
       <div className='container'>
         <h5 className='center'>Welcome to Devship, {userData.map((data) => {
+          window.localStorage.setItem('firstname',data.first_name);
           return (<div>{data.first_name}</div>)
         })}</h5>
       </div><br/><br/>

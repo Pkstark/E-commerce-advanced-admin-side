@@ -7,7 +7,7 @@ function Mobile() {
 
   const [MobileData, setMobileData] = useState([]);
   const [Product, setProduct] = useState();
-  const [availability, setavailability] = useState()
+  const [searchTerm, setsearchTerm] = useState('')
 
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ function Mobile() {
 
 
   const email = localStorage.getItem('email')
-  
+
   return (
     <div>
 
@@ -54,10 +54,22 @@ function Mobile() {
 
       <div className='container'>
         <div className='row'>
-          <div className='center'>
-            <h5>Mobile Product</h5>
+          <div className='col s6 center'>
+            <h4>Mobile</h4>
           </div>
-          {MobileData.map((datas) => {
+          <div className="input-field col s6">
+            <input type="text" className="validate" onChange={event => { setsearchTerm(event.target.value) }} required />
+            <label>Search Product</label>
+          </div>
+        </div><hr/>
+        <div className='row'>
+          {MobileData.filter((datas) => {
+            if(searchTerm === ""){
+              return datas
+            }else if(datas.name.toLowerCase().includes(searchTerm.toLowerCase())){
+              return datas
+            }
+          }).map((datas) => {
             return (<div>
               <div class="col s3">
                 <div class="card lime accent-3 z-depth-4  tooltipped" data-position="top" data-tooltip="View Our Product">
@@ -70,42 +82,42 @@ function Mobile() {
                     <p className='style3'>Prize :&nbsp; Rs.&nbsp;<span className='style2'>{datas.prize}</span> /-- </p>
                     <p className='style3'>OfferPrize :&nbsp;Rs. &nbsp;{datas.offerprize} /--</p>
                     <p className='style3'>Discount : &nbsp;{datas.discount}&nbsp;%</p><br />
-                    <hr/>
+                    <hr />
                     <div className='center'>
-                        <p className=''>{datas.availability === "true" ? (<div style={{ color: "green" }}>Instock</div>) : (<div style={{ color: "red" }}>OutOfStock</div>)}</p>
+                      <p className=''>{datas.availability === "true" ? (<div style={{ color: "green" }}>Instock</div>) : (<div style={{ color: "red" }}>OutOfStock</div>)}</p>
                     </div>
                   </div>
                   <div class="card-action center">
                     <button className='btn grey darken-4 style5' onClick={(e) => {
                       e.preventDefault();
-                      
-                      if(datas.availability === "true"){
+
+                      if (datas.availability === "true") {
                         const pp = {
-                          name : datas.name,
-                          prize : datas.prize,
-                          offerprize : datas.offerprize,
-                          discount : datas.discount,
-                          email : email,
-                          productId : datas.productId,
-                          photo : datas.photo,
-                          catagroy : datas.catagroy
+                          name: datas.name,
+                          prize: datas.prize,
+                          offerprize: datas.offerprize,
+                          discount: datas.discount,
+                          email: email,
+                          productId: datas.productId,
+                          photo: datas.photo,
+                          catagroy: datas.catagroy
                         }
-                  
+
                         console.log(pp)
-                  
-                        axios.post("http://localhost:2022/cart/create",pp).then((data) => {
+
+                        axios.post("http://localhost:2022/cart/create", pp).then((data) => {
                           console.log(data);
-                          if(data.data.status === 1){
+                          if (data.data.status === 1) {
                             alert(data.data.message)
-                          }else{
+                          } else {
                             alert("wrong")
                           }
                         })
                       }
-                      else{
+                      else {
                         alert("out of stock")
                       }
-                      
+
                     }}>AddCart</button>
                   </div>
                 </div>
