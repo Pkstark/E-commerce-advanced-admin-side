@@ -4,3 +4,9 @@
     color: black;
     border-radius: 5px;
 }
+.style9{
+    transform: perspective(100px) translateY(-10px);
+}
+.style10{
+    transform: perspective(100px) translateY(35px) translateX(83px);
+}

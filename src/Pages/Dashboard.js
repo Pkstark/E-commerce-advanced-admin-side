@@ -63,6 +63,11 @@ function Dashboard() {
     navigate('/address')
   }
 
+  const Posted1 = (e) => {
+    e.preventDefault();
+    navigate('/order')
+  }
+
   return (
     <div>
 
@@ -72,7 +77,7 @@ function Dashboard() {
           <ul className="right">
             <li><a href="" onClick={trigger}>Cart</a></li>
             <li><a href="" onClick={Posted}>Address</a></li>
-            <li><a href="">Order</a></li>
+            <li><a href="" onClick={Posted1}>Order</a></li>
           </ul>
         </div>
       </nav>

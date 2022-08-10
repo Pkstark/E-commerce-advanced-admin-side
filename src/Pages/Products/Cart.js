@@ -17,6 +17,7 @@ function Cart() {
   const [catagroy, setcatagroy] = useState('');
   const [discount, setdiscount] = useState('');
   const [photo, setphoto] = useState('');
+  const [productId, setproductId] = useState('')
 
 
   const navigate = useNavigate();
@@ -66,6 +67,11 @@ function Cart() {
   const Navigater = (e) => {
     navigate('/address')
   }
+
+  const Posted1 = (e) => {
+    e.preventDefault();
+    navigate('/order')
+  }
   
   return (
     <div>
@@ -74,7 +80,7 @@ function Cart() {
         <div className="nav-wrapper container">
           <a href="" className="brand-logo">DevShip</a>
           <ul className="right">
-            <li><a href="">Order</a></li>
+            <li><a href="" onClick = {Posted1}>Order</a></li>
             <li><a href="" onClick={posted}>Dashboard</a></li>
           </ul>
         </div>
@@ -120,6 +126,7 @@ function Cart() {
                       setcatagroy(datas.catagroy);
                       setdiscount(datas.discount);
                       setphoto(datas.photo)
+                      setproductId(datas.productId)
                       productSummery();
                     }}>Order</button>&nbsp;&nbsp;
                     <button className='btn grey darken-4 style5' onClick={(e) => {
@@ -175,6 +182,8 @@ function Cart() {
                         window.localStorage.setItem('discount', discount);
                         window.localStorage.setItem('photo',photo);
                         window.localStorage.setItem('email',email);
+                        window.localStorage.setItem('email',email);
+                        window.localStorage.setItem('productId',productId);
                         Navigater ();
                       }}>Order</button>
                     </div>
