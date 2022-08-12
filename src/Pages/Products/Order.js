@@ -56,7 +56,7 @@ function Order() {
     axios.post(`http://localhost:2022/order/delete/${OrederId}`).then((data) => {
       console.log(data);
       getData();
-      if(data.data.status === 1) {
+      if(data.data.status === 1){
         alert(data.data.message)
       }else{
         alert("Wrong")
@@ -66,6 +66,7 @@ function Order() {
 
   return (
     <div>
+      
       <nav className='orange'>
         <div className="nav-wrapper container">
           <a href="" className="brand-logo">DevShip</a>

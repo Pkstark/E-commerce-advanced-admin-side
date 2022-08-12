@@ -38,18 +38,18 @@ function Dashboard() {
 
   const Push = (e) => {
     e.preventDefault();
-    navigate('/mobile')
+
   }
 
   const Push1 = (e) => {
     e.preventDefault();
-    navigate('/shoe')
+
 
   }
 
   const Push2 = (e) => {
     e.preventDefault();
-    navigate('/shirt')
+
 
   }
 
@@ -67,6 +67,10 @@ function Dashboard() {
     e.preventDefault();
     navigate('/order')
   }
+  
+  const V1 = "Mobile";
+  const V2 = "Shoe";
+  const V3 = "Shirt";
 
   return (
     <div>
@@ -101,7 +105,10 @@ function Dashboard() {
                 <p className='style3'>We Have a Verity of Mobile Product see More</p>
               </div>
               <div className="card-action center">
-                <button className='btn grey darken-4' onClick={Push}>View</button>
+                <button className='btn grey darken-4' onClick={()=> {
+                  window.localStorage.setItem('catagroy',V1);
+                  navigate('/mobile')
+                }}>View</button>
               </div>
             </div>
           </div>
@@ -116,7 +123,10 @@ function Dashboard() {
                 <p className='style3'>We Have a Verity of Shoe Product see More</p>
               </div>
               <div className="card-action center">
-                <button className='btn grey darken-4 ' onClick={Push1}>View</button>
+                <button className='btn grey darken-4 ' onClick={() => {
+                  window.localStorage.setItem('catagroy',V2);
+                  navigate('/shoe')
+                }}>View</button>
               </div>
             </div>
           </div>
@@ -131,7 +141,10 @@ function Dashboard() {
                 <p className='style3'>We Have a Verity of Shirts Product see More</p>
               </div>
               <div className="card-action center">
-                <button className='btn grey darken-4 ' onClick={Push2}>View</button>
+                <button className='btn grey darken-4 ' onClick={()=> {
+                  window.localStorage.setItem('catagroy',V3);
+                  navigate('/shirt')
+                }}>View</button>
               </div>
             </div>
           </div>

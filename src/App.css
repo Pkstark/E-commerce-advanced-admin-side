@@ -38,3 +38,30 @@
   transform: perspective(100px) translateY(100px);
   background-color: red;
 }
+.style12{
+  margin-top: 9%;
+}
+
+.style13{
+  margin-top: 9%;
+  background-color: antiquewhite;
+  border-radius: 5px;
+}
+.style14{
+  font-size: 15px;
+}
+.style15{
+  cursor: pointer;
+}
+.style16{
+  border: 2px solid blue;
+  border-radius: 5px;
+  transform: perspective(100px) translateX(-20px);
+  cursor: pointer;
+}
+.style17{
+  cursor: pointer;
+  border: 2px solid blue;
+  transform: perspective(100px) translateX(20px);
+  border-radius: 5px;
+}
