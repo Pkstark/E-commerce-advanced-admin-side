@@ -10,6 +10,7 @@ function Shirt() {
   const [PageNumber, setPageNumber] = useState(0);
   const [name, setname] = useState();
   const [range, setrange] = useState();
+  const [Sort, setSort] = useState(false)
 
   const navigate = useNavigate();
 
@@ -27,10 +28,12 @@ function Shirt() {
   const catagroy = localStorage.getItem('catagroy')
 
   const getData = (e) => {
+    setSort(true)
     const pk = {
       catagroy : catagroy,
       search : name,
-      range : range
+      range : range,
+      order : Sort
     }
 
     axios.post("http://localhost:2022/prize/range",pk).then((data) => {
@@ -148,27 +151,27 @@ function Shirt() {
             </select>
           </div>
           <div className='col s3 center'>
+          <button className='btn indigo style12' value={Sort} onClick={getData} >sort</button>&nbsp;&nbsp;
           <button className='btn indigo style12' onClick={getData} >search</button>
           </div>
         </div><hr/>
         <div className='row'>
           <div className='center'>
-          </div>
           {displayUsers}
-
+          </div>
         </div>
 
         <div className='center'>
         <ReactPagination
             previousLabel={"Prev"}
             pageCount={page}
-            onPageChange={HandlePageClick}
+            onPageChange={HandlePageClick} 
             containerClassName={"pagination style15"}
             pageClassName={"waves-effect"}
             activeClassName={"active indigo"}
             previousLinkClassName={"style16"}
             nextLinkClassName={"style17"}
-          />
+          /> 
         </div>
         
       </div>

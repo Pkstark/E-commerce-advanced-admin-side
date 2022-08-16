@@ -12,6 +12,7 @@ function Shoe() {
 
   const [name, setname] = useState();
   const [range, setrange] = useState();
+  const [Sort, setSort] = useState(false)
 
   const posted = (e) => {
     e.preventDefault();
@@ -25,10 +26,14 @@ function Shoe() {
   const catagroy = localStorage.getItem('catagroy')
 
   const getData = (e) => {
+
+    setSort(true);
+
     const pk = {
       catagroy : catagroy,
       search : name,
-      range : range
+      range : range,
+      order : Sort
     }
 
     axios.post("http://localhost:2022/prize/range",pk).then((data) => {
@@ -147,6 +152,7 @@ function Shoe() {
             </select>
           </div>
           <div className='col s3 center'>
+          <button className='btn indigo style12' onClick={getData}>sort</button>&nbsp;&nbsp;
           <button className='btn indigo style12' onClick={getData}>search</button>
           </div>
         </div><hr/>
