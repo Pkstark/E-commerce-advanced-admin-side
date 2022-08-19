@@ -9,7 +9,7 @@ function Mobile() {
   const [MobileData, setMobileData] = useState([]);
   const [PageNumber, setPageNumber] = useState(0);
 
-  const [name, setname] = useState();
+  const [name, setname] = useState('');
   const [range, setrange] = useState();
   const [Sort, setSort] = useState(false)
 
@@ -64,7 +64,13 @@ function Mobile() {
   const PageVisited = PageNumber * userPerPage;
   const page = Math.ceil(MobileData.length / userPerPage);
 
-  const displayUsers = MobileData.slice(PageVisited, PageVisited + userPerPage).map((datas) => {
+  const displayUsers = MobileData.filter((datas) => {
+    if(name == ""){
+      return datas
+    }else if(datas.name.toLowerCase().includes(name.toLowerCase())){
+      return datas
+    }
+  }).slice(PageVisited, PageVisited + userPerPage).map((datas) => {
     return (<div>
       <div class="col s3">
         <div class="card lime accent-3 z-depth-4  tooltipped" data-position="top" data-tooltip="View Our Product">
@@ -86,31 +92,42 @@ function Mobile() {
             <button className='btn grey darken-4 style5' onClick={(e) => {
               e.preventDefault();
   
-              if (datas.availability === "true") {
-                const pp = {
-                  name: datas.name,
-                  prize: datas.prize,
-                  offerprize: datas.offerprize,
-                  discount: datas.discount,
-                  email: email,
-                  productId: datas.productId,
-                  photo: datas.photo,
-                  catagroy: datas.catagroy
-                }
-  
-                console.log(pp)
-  
-                axios.post("http://localhost:2022/cart/create", pp).then((data) => {
-                  console.log(data);
-                  if (data.data.status === 1) {
-                    alert(data.data.message)
-                  } else {
-                    alert("wrong")
+              if(email != ""){
+                if (datas.availability === "true") {
+                  const pp = {
+                    name: datas.name,
+                    prize: datas.prize,
+                    offerprize: datas.offerprize,
+                    discount: datas.discount,
+                    email: email,
+                    productId: datas.productId,
+                    photo: datas.photo,
+                    catagroy: datas.catagroy
                   }
-                })
-              }
-              else {
-                alert("out of stock")
+    
+                  console.log(pp)
+    
+                  axios.post("http://localhost:2022/cart/create", pp).then((data) => {
+                    console.log(data);
+                    if (data.data.status === 1) {
+                      alert(data.data.message)
+                    } else {
+                      alert("wrong")
+                    }
+                  })
+                }
+                else {
+                  alert("out of stock")
+                }
+              }else{
+                window.localStorage.setItem("pn",datas.name)
+                window.localStorage.setItem("pp",datas.prize)
+                window.localStorage.setItem("pof",datas.offerprize)
+                window.localStorage.setItem("pd",datas.discount)
+                window.localStorage.setItem("pId",datas.productId)
+                window.localStorage.setItem("pph",datas.photo)
+                window.localStorage.setItem("pc",datas.catagroy)
+                alert("cart added tt")
               }
             }}>AddCart</button>
           </div>

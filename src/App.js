@@ -12,7 +12,10 @@ import Shoe from './Pages/Products/Shoe';
 import Shirt from './Pages/Products/Shirt';
 import Cart from './Pages/Products/Cart';
 import Address from './Pages/Products/Address';
-import Order from './Pages/Products/Order'
+import Order from './Pages/Products/Order';
+import QuestRegister from './Pages/Products/QuestRegister';
+import QuestLogin from './Pages/Products/QuestLogin';
+import QuestCart from './Pages/Products/QuestCart';
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/address' element={<Address/>}/>
           <Route path='/order' element={<Order/>}/>
+          <Route path='/register' element={<QuestRegister/>}/>
+          <Route path='/.login' element={<QuestLogin/>}/>
+          <Route path='/.cart' element={<QuestCart/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -8,7 +8,7 @@ function Shirt() {
 
   const [ShirtData, setShirtData] = useState([]);
   const [PageNumber, setPageNumber] = useState(0);
-  const [name, setname] = useState();
+  const [name, setname] = useState('');
   const [range, setrange] = useState();
   const [Sort, setSort] = useState(false)
 
@@ -63,7 +63,13 @@ function Shirt() {
   const PageVisited = PageNumber * userPerPage;
   const page = Math.ceil(ShirtData.length / userPerPage);
 
-  const displayUsers = ShirtData.slice(PageVisited, PageVisited + userPerPage).map((datas) => {
+  const displayUsers = ShirtData.filter((datas) => {
+    if(name == ""){
+      return datas
+    }else if(datas.name.toLowerCase().includes(name.toLowerCase())){
+      return datas
+    }
+  }).slice(PageVisited, PageVisited + userPerPage).map((datas) => {
 
     return (<div>
       <div class="col s3">

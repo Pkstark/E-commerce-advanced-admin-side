@@ -10,7 +10,7 @@ function Shoe() {
   const [ShoeData, setShoeData] = useState([]);
   const [PageNumber, setPageNumber] = useState(0);
 
-  const [name, setname] = useState();
+  const [name, setname] = useState('');
   const [range, setrange] = useState();
   const [Sort, setSort] = useState(false)
 
@@ -60,7 +60,13 @@ function Shoe() {
   const PageVisited = PageNumber * userPerPage;
   const page = Math.ceil(ShoeData.length / userPerPage);
 
-  const displayUsers = ShoeData.slice(PageVisited, PageVisited + userPerPage).map((datas) => {
+  const displayUsers = ShoeData.filter((datas) => {
+    if(name == ""){
+      return datas
+    }else if(datas.name.toLowerCase().includes(name.toLowerCase())){
+      return datas
+    }
+  }).slice(PageVisited, PageVisited + userPerPage).map((datas) => {
 
     return (<div>
       <div class="col s3">

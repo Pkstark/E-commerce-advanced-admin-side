@@ -34,6 +34,13 @@ function Cart() {
   }, [])
 
   const email = localStorage.getItem('email')
+  const pn = localStorage.getItem('pn')
+  const pp = localStorage.getItem('pp')
+  const pof = localStorage.getItem('pof')
+  const pd = localStorage.getItem('pd')
+  const pId = localStorage.getItem('pId')
+  const pph = localStorage.getItem('pph')
+  const pc = localStorage.getItem('pc')
 
   const getData = (e) => {
     const pp = {
@@ -91,7 +98,9 @@ function Cart() {
           <div className='center'>
             <h5>Cart</h5>
           </div>
-          {CartData.map((datas) => {
+          {email != "" ? (<div>
+
+            {CartData.map((datas) => {
             return (<div>
               <div class="col s3">
                 <div class="card lime accent-3 z-depth-4  tooltipped" data-position="top" data-tooltip="View Our Product">
@@ -147,6 +156,46 @@ function Cart() {
               </div>
             </div>)
           })}
+
+          </div>) : <div>
+            
+          <div class="col s3">
+                <div class="card lime accent-3 z-depth-4  tooltipped" data-position="top" data-tooltip="View Our Product">
+                  <div class="card-image">
+                    <img src={`http://localhost:2022/${pph}`} style={{ width: "300px", height: "200px" }} className='responsive-img' />
+                  </div>
+                  <div class="card-content">
+                    <p className='style3'>Product Name :{pn}</p>
+                    <p className='style3'>Prize :&nbsp; Rs.&nbsp;<span className='style2'>{pp}</span> /-- </p>
+                    <p className='style3'>OfferPrize :&nbsp;Rs. &nbsp;{pof} /--</p>
+                    <p className='style3'>Discount : &nbsp;{pd}&nbsp;%</p><br/>
+                    <div className='row'>
+                    <div className='col s4'><a className=' btn-floating waves-effect orange darken-3 center'onClick={(e) => {
+                        e.preventDefault();
+                        RemoveCounter();
+                      }}><i className='material-icons'>remove</i></a></div>
+                      
+                      <div className='col s4'><div className='style6 center'>{Counter}</div></div>
+                      <div className='col s4'><a className=' btn-floating waves-effect orange darken-3 center' onClick={(e) => {
+                        e.preventDefault();
+                        AddCounter();
+                      }}><i className='material-icons'>add</i></a></div>
+                      
+                    </div>
+                  </div>
+                  <div class="card-action center">
+                    <button className='btn grey darken-4 style5 modal-trigger ' data-target="change" onClick={(e) => {
+                      e.preventDefault();
+                      window.localStorage.setItem("pq",Counter);
+                      alert("Your not Registered Please Registered !!!");
+                      navigate('/register')
+                    }}>Order</button>
+                  </div>
+                </div>
+              </div>
+
+          </div>}
+          
 
 
         </div>

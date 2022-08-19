@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Img from '../Assets/image1.jpg';
+import Img from '../../Assets/image1.jpg';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 
-function Register() {
+function QuestRegister() {
 
   const [First_Name, setFirst_Name] = useState("");
   const [surName, setSurName] = useState("");
@@ -31,7 +31,7 @@ function Register() {
     axios.post("http://localhost:2022/register",pp).then((data) => {
       console.log(data);
       alert("register Success")
-      navigate("/login")
+      navigate("/.login")
     }).catch((err) => {
       console.log(err)
     })
@@ -110,12 +110,7 @@ function Register() {
               <div className='card-action center'>
                 <button type='submit' className='btn'>Register</button>
               </div>
-              <p className='center'>Already Registered ? Please Login <a style={{ color: "blue" }} href="/login">Click here!!!</a></p>
-              <p className='center'><a style={{ color: "blue" }} href="" onClick={(e) => {
-                window.localStorage.setItem('email' ,"");
-                navigate('/dash')
-              }}>Guest User !!!</a></p>
-              <br/>
+              <p className='center'>Already Registered ? Please Login <a style={{ color: "blue" }} href="/.login">Click here!!!</a></p>
             </div>
           </form>
         </div>
@@ -124,4 +119,4 @@ function Register() {
   )
 }
 
-export default Register
+export default QuestRegister
