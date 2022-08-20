@@ -9,7 +9,7 @@ function Cart() {
   const [Counter, setCounter] = useState(1);
 
   const [counterId, setcounterId] = useState()
-  const [counterId1, setcounterId1] = useState()
+  const [userData, setuserData] = useState([])
 
   const [name, setname] = useState('');
   const [prize, setprize] = useState('');
@@ -29,6 +29,7 @@ function Cart() {
 
   useEffect(() => {
     getData();
+    getData1();
 
     console.log(CartData)
   }, [])
@@ -49,6 +50,18 @@ function Cart() {
     axios.post("http://localhost:2022/cart/data",pp).then((data) => {
       console.log(data);
       setCartData(data.data.data)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+  const getData1 = () => {
+    const pk = {
+      email: email
+    }
+    axios.post('http://localhost:2022/getdata', pk).then((data) => {
+      console.log(data)
+      setuserData(data.data)
     }).catch((err) => {
       console.log(err)
     })
@@ -231,7 +244,9 @@ function Cart() {
                         window.localStorage.setItem('discount', discount);
                         window.localStorage.setItem('photo',photo);
                         window.localStorage.setItem('email',email);
-                        window.localStorage.setItem('email',email);
+                        {userData.map((dad) => {
+                          window.localStorage.setItem('Uid',dad.userID);
+                        })}
                         window.localStorage.setItem('productId',productId);
                         Navigater ();
                       }}>Order</button>

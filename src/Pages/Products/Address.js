@@ -171,7 +171,7 @@ function Address() {
   const photo = localStorage.getItem('photo');
   const email1 = localStorage.getItem('email');
   const firstname = localStorage.getItem('firstname');
-  const productId = localStorage.getItem('productId');
+  const Uid = localStorage.getItem('Uid');
 
   const HandleOrder = (e) => {
     e.preventDefault();
@@ -185,7 +185,7 @@ function Address() {
       offerprize : offerprize,
       discount : discount,
       quantity : quantity,
-      productId : productId,
+      Uid : Uid,
       email : email1,
       clientname : firstname,
       flatno : SelectedProduct.flatno,
