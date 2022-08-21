@@ -55,6 +55,14 @@ function Mobile() {
   const V3 = 100000;
   const V = null;
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setTimeout(() => {
+      setname(value)
+    }, 1000);
+  };
+
 
   const HandlePageClick = ({ selected }) => {
     setPageNumber(selected);
@@ -157,7 +165,7 @@ function Mobile() {
             <h4 className='center'>Mobile</h4>
           </div>
           <div className="input-field col s3 center">
-            <input type="text" className="validate" onChange={(e) => setname(e.target.value)} required />
+            <input type="text" id='name' name='name' className="validate" onChange={(e) => handleChange(e)} required />
             <label>Search Product</label>
           </div>
           <div className='col s3 center'>

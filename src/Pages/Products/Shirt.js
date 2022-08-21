@@ -59,6 +59,14 @@ function Shirt() {
     setPageNumber(selected);
   }
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setTimeout(() => {
+      setname(value)
+    }, 1000);
+  };
+
   const userPerPage = 4;
   const PageVisited = PageNumber * userPerPage;
   const page = Math.ceil(ShirtData.length / userPerPage);
@@ -145,7 +153,7 @@ function Shirt() {
             <h4>Shirts</h4>
           </div>
           <div className="input-field col s3">
-            <input type="text" className="validate" onChange={(e) => setname(e.target.value)} required />
+            <input type="text" className="validate" onChange={(e) => handleChange(e)} required />
             <label>Search </label>
           </div>
           <div className='col s3 center'>

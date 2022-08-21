@@ -52,6 +52,15 @@ function Shoe() {
     navigate('/cart')
   }
 
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setTimeout(() => {
+      setname(value)
+    }, 1000);
+  };
+
   const V1 = 2000;
   const V2 = 1000;
   const V3 = 800;
@@ -146,7 +155,7 @@ function Shoe() {
             <h4>Shoe</h4>
           </div>
           <div className="input-field col s3">
-            <input type="text" className="validate" onChange={(e) => setname(e.target.value)} required />
+            <input type="text" className="validate" onChange={(e) => handleChange(e)} required />
             <label>Search Product</label>
           </div>
           <div className='col s3 center'>
