@@ -1,21 +1,18 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import { useNavigate } from 'react-router-dom';
 import './address.css'
+import axios from 'axios';
 
 function Address() {
 
   const navigate = useNavigate();
+  
   const [uploadAddress, setuploadAddress] = useState([])
   const [AddressData, setAddressData] = useState([]);
-
   const [UpdateId, setUpdateId] = useState()
-
   const [SelectId, setSelectId] = useState('')
-
   const [SelectedProduct, setSelectedProduct] = useState('');
-
   const [AddressDeleted, setAddressDeleted] = useState('')
 
   const Posted = (e) => {
@@ -174,7 +171,7 @@ function Address() {
   const Uid = localStorage.getItem('Uid');
 
   const HandleOrder = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
 
     const pk = {
@@ -201,7 +198,7 @@ function Address() {
       console.log(data);
       if(data.data.status === 1){
         alert(data.data.message);
-        navigate('/order')
+        // navigate('/order')
       }else{
         alert("wrong")
       }
@@ -209,7 +206,7 @@ function Address() {
   }
 
   return (
-    <div>
+    <div className='scroll'>
 
       <nav className='orange'>
         <div className="nav-wrapper container">
@@ -352,14 +349,14 @@ function Address() {
             <h5 className='center'>Are Sure Want to Order this Project</h5>
           </div>
           <div className="modal-footer lime accent-3 center">
-            <button type='submit' className='btn grey darken-4 style5' onClick={HandleOrder}>Order</button>
+            <button type='submit' className='btn grey darken-4 style5' onClick={(e) =>HandleOrder(e)}><a href='/order' style={{color : "white"}}>Order</a></button>
           </div>
         </form>
       </div>
 
       <div className='container'>
         <div className='right'>
-          <button className='btn style9  modal-trigger' type='submit'  data-target="change1" onClick={() => {
+          <button className='btn style9  modal-trigger' type='submit'  data-target="change1" onClick={(e) => {
             getTrig();
           }}>Order</button>
         </div>&nbsp;

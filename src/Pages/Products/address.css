@@ -10,3 +10,6 @@
 .style10{
     transform: perspective(100px) translateY(35px) translateX(83px);
 }
+.scroll{
+    scroll-behavior: auto;
+}

@@ -25,25 +25,23 @@ function Order() {
   }
 
   useEffect(() => {
-    getData();
+    getData1();
   }, [])
 
 
   const email = localStorage.getItem('email')
 
+  const getData1 =() => {
 
-  const getData = () => {
-    const pk = {
-      email: email
-    }
-    axios.post("http://localhost:2022/order/clientdata", pk).then((data) => {
-      console.log(data);
-      setuserData(data.data)
+    axios.post("http://localhost:2022/order/look").then((data) => {
+      console.log(data)
+      setuserData(data?.data?.Order)
     }).catch((err) => {
       console.log(err)
     })
-
   }
+
+  const userId = localStorage.getItem('Uid')
 
   const getTrig = () => {
     var elem = document.querySelectorAll('.modal');
@@ -55,7 +53,7 @@ function Order() {
 
     axios.post(`http://localhost:2022/order/delete/${OrederId}`).then((data) => {
       console.log(data);
-      getData();
+      getData1();
       if(data.data.status === 1){
         alert(data.data.message)
       }else{
@@ -66,7 +64,6 @@ function Order() {
 
   return (
     <div>
-      
       <nav className='orange'>
         <div className="nav-wrapper container">
           <a href="" className="brand-logo">DevShip</a>
@@ -82,10 +79,21 @@ function Order() {
       <div className='container'>
         <h5 className='center'>Your Order Details</h5><br/>
         {userData.map((datas) => {
+
           return (<div>
-            <div className='card'>
+            {userId === datas.Uid ? (<div>
+
+              <div className='card'>
               <div className='card-content'>
                 <div className='row s12'>
+                  <div className='row'>
+                  <div className='col s4 offset-s2'>
+                  <p className=' style18'>ClientName : {datas.clientdata.first_name}</p>
+                  </div>
+                  <div className='col s4'>
+                  <p className='style18'>Email : {datas.clientdata.email}</p>
+                  </div>
+                  </div><hr/>
                   <div className='col s3 center'>
                     <img  src={`http://localhost:2022/${datas.photo}`} style={{ height: "150px", width: "150px" }} />
                   </div>
@@ -114,11 +122,14 @@ function Order() {
                     <button className='btn right style11 modal-trigger' data-target = "change" onClick={() => {
                       setOrederId(datas._id);
                       getTrig();
-                    }}>Cancel</button>
+                    }}>Cancel</button><br/>
                   </div>
                 </div>
               </div>
             </div>
+
+            </div>) : (<div className='center'></div>)}
+            
           </div>)
         })}
       </div>

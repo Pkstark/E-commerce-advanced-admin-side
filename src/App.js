@@ -22,7 +22,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Register/>}/>
+          <Route index path='/' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/dash' element={<Dashboard/>}/>
           <Route path='/fpass' element={<Forgot_Password/>}/>

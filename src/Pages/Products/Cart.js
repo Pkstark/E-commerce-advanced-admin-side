@@ -30,8 +30,6 @@ function Cart() {
   useEffect(() => {
     getData();
     getData1();
-
-    console.log(CartData)
   }, [])
 
   const email = localStorage.getItem('email')
@@ -67,7 +65,8 @@ function Cart() {
     })
   }
 
-  const productSummery = (e) =>{
+  const productSummery = () =>{
+    // e.preventDefault();
     var elems = document.querySelectorAll('.modal');
     var instance = M.Modal.init(elems , {})
   }
@@ -84,13 +83,28 @@ function Cart() {
     }
   }
 
-  const Navigater = (e) => {
-    navigate('/address')
-  }
 
   const Posted1 = (e) => {
     e.preventDefault();
     navigate('/order')
+  }
+
+
+  const HandleOrder = () => {
+    // e.preventDefault();
+
+    window.localStorage.setItem('catagroy',catagroy);
+    window.localStorage.setItem('name',name);
+    window.localStorage.setItem('prize',prize);
+    window.localStorage.setItem('offerprize',offerprize);
+    window.localStorage.setItem('quantity',Counter);
+    window.localStorage.setItem('discount', discount);
+    window.localStorage.setItem('photo',photo);
+    window.localStorage.setItem('email',email);
+    {userData.map((dad) => {
+      window.localStorage.setItem('Uid',dad.userID);
+    })}
+    window.localStorage.setItem('productId',productId);
   }
   
   return (
@@ -140,8 +154,8 @@ function Cart() {
                     </div>
                   </div>
                   <div class="card-action center">
-                    <button className='btn grey darken-4 style5 modal-trigger ' data-target="change" onClick={(e) => {
-                      e.preventDefault();
+                    <button className='btn grey darken-4 style5 modal-trigger ' data-target="change" onClick={() => {
+                      // e.preventDefault();
                       setname(datas.name);
                       setprize(datas.prize);
                       setofferprize(datas.offerprize);
@@ -235,21 +249,7 @@ function Cart() {
                       </div>
                     </div>
                     <div className="modal-footer lime accent-3 center">
-                      <button type='submit' className='btn grey darken-4 style5' onClick={(e) => {
-                        window.localStorage.setItem('catagroy',catagroy);
-                        window.localStorage.setItem('name',name);
-                        window.localStorage.setItem('prize',prize);
-                        window.localStorage.setItem('offerprize',offerprize);
-                        window.localStorage.setItem('quantity',Counter);
-                        window.localStorage.setItem('discount', discount);
-                        window.localStorage.setItem('photo',photo);
-                        window.localStorage.setItem('email',email);
-                        {userData.map((dad) => {
-                          window.localStorage.setItem('Uid',dad.userID);
-                        })}
-                        window.localStorage.setItem('productId',productId);
-                        Navigater ();
-                      }}>Order</button>
+                      <button type='submit' className='btn grey darken-4 style5' onClick={HandleOrder}><a href="/address" style={{color : "white"}}>Order</a></button>
                     </div>
                   </form>
                 </div>
